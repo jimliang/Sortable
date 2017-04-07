@@ -479,11 +479,11 @@
 			}
 
 			try {
-				if (document.selection) {					
-					// Timeout neccessary for IE9					
+				if (document.selection) {
+					// Timeout neccessary for IE9
 					setTimeout(function () {
 						document.selection.empty();
-					});					
+					});
 				} else {
 					window.getSelection().removeAllRanges();
 				}
@@ -1314,8 +1314,8 @@
 		// 5 — min delta
 		// abs — нельзя добавлять, а то глюки при наведении сверху
 		return (
-			(evt.clientY - (rect.top + rect.height) > 5) ||
-			(evt.clientX - (rect.right + rect.width) > 5)
+			(evt.clientY - rect.top > 5) ||
+			(evt.clientX - rect.right > 5)
 		) && lastEl;
 	}
 
@@ -1429,7 +1429,7 @@
 		}
 	}
 
-	// Fixed #973: 
+	// Fixed #973:
 	_on(document, 'touchmove', function (evt) {
 		if (Sortable.active) {
 			evt.preventDefault();
