@@ -798,7 +798,7 @@
 							else if (target.previousElementSibling === dragEl || dragEl.previousElementSibling === target) {
 								after = (evt.clientY - targetRect.top) / height > 0.5;
 							} else {
-								after = tgTop > elTop;
+								// after = tgTop > elTop;
 							}
 						} else if (!isMovingBetweenSortable) {
 							after = (nextSibling !== dragEl) && !isLong || halfway && isLong;
@@ -837,17 +837,19 @@
 					+ (prevRect.top - currentRect.top) + 'px,0)'
 				);
 
-				target.offsetWidth; // repaint
+				// target.offsetWidth; // repaint
 
-				_css(target, 'transition', 'all ' + ms + 'ms');
-				_css(target, 'transform', 'translate3d(0,0,0)');
+				setTimeout(function () {
+					_css(target, 'transition', 'all ' + ms + 'ms');
+					_css(target, 'transform', 'translate3d(0,0,0)');
 
-				clearTimeout(target.animated);
-				target.animated = setTimeout(function () {
-					_css(target, 'transition', '');
-					_css(target, 'transform', '');
-					target.animated = false;
-				}, ms);
+					clearTimeout(target.animated);
+					target.animated = setTimeout(function () {
+						_css(target, 'transition', '');
+						_css(target, 'transform', '');
+						target.animated = false;
+					}, ms);
+				}, 0)
 			}
 		},
 
